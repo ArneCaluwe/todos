@@ -1,0 +1,11 @@
+<div class="grid grid-cols-3 p-4" cdkDropListGroup>
+  <app-todo-board-list
+    *ngFor="let board of boards"
+    cdkDropList
+    [cdkDropListData]="board.content"
+    (cdkDropListDropped)="onDrop($event)"
+    [title]="board.title"
+    [todos]="board.content"
+    class="card"
+  />
+</div>

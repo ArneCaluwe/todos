@@ -1,0 +1,64 @@
+<app-card class="w-96">
+  <form class="flex flex-grow" (submit)="onSubmit()">
+    <input
+      type="text"
+      [(ngModel)]="newTodo"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Add new todo"
+      required
+      autofocus
+      class="input--lg text-green-400 dark:text-slate-600 placeholder:text-green-500 dark:placeholder:text-slate-700"
+    />
+    <button type="submit" class="icon-btn">
+      <mat-icon class="">send</mat-icon>
+    </button>
+  </form>
+  <ng-container *ngIf="todos && todos.length; else noTodos">
+    <div
+      id="dropListTodos"
+      cdkDropListConnectedTo="dropListRemove"
+      cdkDropListLockAxis="y"
+      cdkDropList
+      (cdkDropListDropped)="onDrop($event)"
+      class="peer"
+    >
+      <ng-container *ngFor="let todo of todos; index as i">
+        <app-cell *ngIf="editedTodo !== i; else todoForm" cdkDrag>
+          <app-todo-list-item
+            appDoubleClick
+            (doubleClick)="onDoubleClick(i)"
+            [todo]="todo"
+            (complete)="onComplete(i)"
+          />
+        </app-cell>
+        <ng-template #todoForm>
+          <app-cell>
+            <app-todo-list-form
+              [todo]="todo"
+              (submit)="onSubmitEdit($event, i)"
+              (cancel)="onCancelEdit()"
+            />
+          </app-cell>
+        </ng-template>
+      </ng-container>
+    </div>
+    <div
+      id="dropListRemove"
+      cdkDropList
+      cdkDropListConnectedTo="dropListTodos"
+      (cdkDropListDropped)="onDropRemoveZone($event)"
+      class="grid invisible flex-grow place-items-center text-slate-300 peer peer-[.cdk-drop-list-dragging]:visible"
+    >
+      <mat-icon class="remove-zone__icon">delete</mat-icon>
+    </div>
+    <p
+      class="placeholder absolute w-full text-center peer-[.cdk-drop-list-dragging]:opacity-0 transition-opacity duration-300"
+    >
+      drag items to move or remove
+    </p>
+  </ng-container>
+</app-card>
+
+<ng-template #noTodos>
+  <p class="placeholder">No todos yet!</p>
+</ng-template>

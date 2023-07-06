@@ -1,1 +1,91 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input {
+    @apply p-1 m-1  bg-inherit rounded-lg w-auto font-serif  italic border-0 flex-grow focus-visible:outline-none;
+    &.input--lg {
+      @apply text-lg m-2 p-2;
+    }
+  }
+}
+
+@layer components {
+  .card {
+    @apply block 
+      p-4 m-4 
+      bg-white dark:bg-slate-900 
+      rounded-lg 
+      text-green-700 dark:text-slate-500 
+      overflow-hidden 
+      text-ellipsis;
+  }
+
+  .placeholder {
+    @apply text-green-600 dark:text-slate-600 
+    italic font-serif;
+  }
+
+  .icon-btn {
+    @apply rounded-full 
+      p-2
+      grid
+      place-items-center
+      bg-inherit 
+      opacity-50
+      aspect-square
+      text-green-500 dark:text-slate-500 
+      hover:bg-white dark:hover:bg-slate-800 
+      hover:text-green-600 dark:hover:text-slate-500 
+      transition-colors 
+      duration-300;
+    &--active {
+      @apply text-green-800 dark:text-slate-200
+        hover:text-inherit
+        hover:bg-inherit;
+    }
+  }
+}
+
+@layer utilities {
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  .wiggle {
+    --animation-repetitions: 1;
+    --animation-size: 2;
+    animation: wiggle 1s ease-in-out var(--animation-repetitions);
+    @keyframes wiggle {
+      0% {
+        transform: rotate(0deg);
+      }
+      80% {
+        transform: rotate(0deg);
+      }
+      85% {
+        transform: rotate(calc(var(--animation-size) * 5deg));
+      }
+      95% {
+        transform: rotate(calc(var(--animation-size) * -5deg));
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  .large {
+    --animation-size: 2;
+  }
+
+  .once {
+    -animation-duration: 1;
+  }
+
+  .infinite {
+    --animation-repititions: infinite;
+  }
+}

@@ -1,0 +1,10 @@
+<h1 class="font-serif italic text-lg pb-2 text-slate-700">{{ title }}</h1>
+<ng-container *ngIf="todos && todos.length; else noTodos">
+  <div cdkDrag [cdkDragData]="todo" *ngFor="let todo of todos">
+    <app-todo-board-list-item [todo]="todo" />
+  </div>
+</ng-container>
+
+<ng-template #noTodos>
+  <p class="placeholder">No todos yet!</p>
+</ng-template>
