@@ -20,7 +20,7 @@
       cdkDropListLockAxis="y"
       cdkDropList
       (cdkDropListDropped)="onDrop($event)"
-      class="peer"
+      class="peer min-h-[10px]"
     >
       <ng-container *ngFor="let todo of todos; index as i">
         <app-cell *ngIf="editedTodo !== i; else todoForm" cdkDrag>

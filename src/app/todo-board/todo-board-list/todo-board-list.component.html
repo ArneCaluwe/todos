@@ -1,10 +1,38 @@
-<h1 class="font-serif italic text-lg pb-2 text-slate-700">{{ title }}</h1>
-<ng-container *ngIf="todos && todos.length; else noTodos">
-  <div cdkDrag [cdkDragData]="todo" *ngFor="let todo of todos">
-    <app-todo-board-list-item [todo]="todo" />
-  </div>
-</ng-container>
+<div class="" appDoubleClick (doubleClick)="createNewTodo()">
+  <h1 class="font-serif italic text-lg pb-2 text-slate-700">{{ title }}</h1>
+  <ng-container *ngIf="todos && todos.length; else noTodos">
+    <div cdkDrag [cdkDragData]="todo" *ngFor="let todo of todos; index as i">
+      <app-cell *ngIf="editedTodo !== i; else todoForm" cdkDrag>
+        <app-todo-list-item
+          appDoubleClick
+          (doubleClick)="editTodo(i)"
+          [todo]="todo.title"
+          [completable]="false"
+        />
+      </app-cell>
+      <ng-template #todoForm>
+        <app-cell>
+          <app-todo-list-form
+            [todo]="todo.title"
+            (submit)="onSubmitEdit($event, i)"
+            (cancel)="onCancelEdit()"
+            class="w-full"
+          />
+        </app-cell>
+      </ng-template>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="creatingNewTodo">
+    <app-cell>
+      <app-todo-list-form
+        (submit)="onSubmitCreate($event)"
+        (cancel)="onCancelCreate()"
+        class="w-full"
+      />
+    </app-cell>
+  </ng-container>
 
-<ng-template #noTodos>
-  <p class="placeholder">No todos yet!</p>
-</ng-template>
+  <ng-template #noTodos>
+    <p class="placeholder" *ngIf="!creatingNewTodo">No todos yet!</p>
+  </ng-template>
+</div>

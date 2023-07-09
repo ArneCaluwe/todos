@@ -1,0 +1,13 @@
+<input
+  type="text"
+  [placeholder]="todo ? 'Update todo' : 'Add new'"
+  [(ngModel)]="newTodo"
+  autofocus
+  class="flex flex-grow flex-shrink min-w-[50px]"
+/>
+<button type="submit" (click)="onSubmit()">
+  <mat-icon *ngIf="todo; else create">edit</mat-icon>
+  <ng-template #create>
+    <mat-icon>send</mat-icon>
+  </ng-template>
+</button>

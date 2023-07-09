@@ -6,8 +6,10 @@ import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
 export class DoubleClickDirective {
   @Output() doubleClick = new EventEmitter<void>();
 
-  @HostListener('dblclick')
-  onDoubleClick(): void {
+  @HostListener('dblclick', ['$event'])
+  onDoubleClick(event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
     this.doubleClick.emit();
   }
 }
