@@ -1,8 +1,13 @@
-<div class="" appDoubleClick (doubleClick)="createNewTodo()">
+<div appDoubleClick (doubleClick)="createNewTodo()">
   <h1 class="font-serif italic text-lg pb-2 text-slate-700">{{ title }}</h1>
-  <ng-container *ngIf="todos && todos.length; else noTodos">
+  <div
+    cdkDropList
+    [cdkDropListData]="todos"
+    (cdkDropListDropped)="onDrop($event)"
+    class="min-h-[10px]"
+  >
     <div cdkDrag [cdkDragData]="todo" *ngFor="let todo of todos; index as i">
-      <app-cell *ngIf="editedTodo !== i; else todoForm" cdkDrag>
+      <app-cell *ngIf="editedTodo !== i; else todoForm">
         <app-todo-list-item
           appDoubleClick
           (doubleClick)="editTodo(i)"
@@ -21,7 +26,7 @@
         </app-cell>
       </ng-template>
     </div>
-  </ng-container>
+  </div>
   <ng-container *ngIf="creatingNewTodo">
     <app-cell>
       <app-todo-list-form
@@ -32,7 +37,7 @@
     </app-cell>
   </ng-container>
 
-  <ng-template #noTodos>
+  <ng-container *ngIf="!todos || !todos.length">
     <p class="placeholder" *ngIf="!creatingNewTodo">No todos yet!</p>
-  </ng-template>
+  </ng-container>
 </div>

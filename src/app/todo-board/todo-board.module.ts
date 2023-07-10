@@ -8,6 +8,7 @@ import { CellComponent } from '../shared/ui/cell/cell.component';
 import { TodoListItemComponent } from '../todo-list-item/todo-list-item.component';
 import { TodoListFormComponent } from '../todo-list-form/todo-list-form.component';
 import { DirectivesModule } from '@directives/directives.module';
+import { CardComponent } from '../shared/ui/card/card.component';
 
 const ROUTES: Routes = [{ path: '', component: TodoBoardComponent }];
 @NgModule({
@@ -23,6 +24,7 @@ const ROUTES: Routes = [{ path: '', component: TodoBoardComponent }];
     CellComponent,
     TodoListItemComponent,
     TodoListFormComponent,
+    CardComponent,
   ],
 })
 export class TodoBoardModule {}

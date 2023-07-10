@@ -16,29 +16,29 @@ describe('TodoDataService', () => {
   });
 
   it('should add a todo', () => {
-    service.addTodo({ title: 'hello', type: 'todo' });
+    service.addTodo(service.todos, { title: 'hello', type: 'todo' });
     expect(service.todos.length).toBe(1);
   });
 
   it('should update a todo', () => {
     const todo: Todo = { title: 'hello', type: 'todo' };
-    service.addTodo(todo);
-    service.updateTodoAt(0, 'hello world');
+    service.addTodo(service.todos, todo);
+    service.updateTodoAt(service.todos, 0, 'hello world');
     expect(service.todos[0].title).toBe('hello world');
   });
 
   it('should delete a todo by Id', () => {
     const todo: Todo = { title: 'hello', type: 'todo' };
-    service.addTodo(todo);
-    const response = service.removeTodoAt(0);
+    service.addTodo(service.todos, todo);
+    const response = service.removeTodoAt(service.todos, 0);
     expect(service.todos.length).toBe(0);
     expect(response).toEqual(todo);
   });
 
   it('should delete a todo', () => {
     const todo: Todo = { title: 'hello', type: 'todo' };
-    service.addTodo(todo);
-    const response = service.removeTodo(todo);
+    service.addTodo(service.todos, todo);
+    const response = service.removeTodo(service.todos, todo);
     expect(service.todos.length).toBe(0);
     expect(response).toEqual(todo);
   });

@@ -27,28 +27,33 @@ export class TodoDataService {
     return this._dones;
   }
 
-  addTodo(todo: Todo): void {
-    this._todos.push(todo);
+  addTodo(todoContainer: Todo[], todo: Todo): void {
+    todoContainer.push(todo);
   }
 
-  removeTodo(todo: Todo): Todo {
-    return this.todos.splice(this.todos.indexOf(todo), 1)[0];
+  removeTodo(todoContainer: Todo[], todo: Todo): Todo {
+    const index = todoContainer.indexOf(todo);
+    if (index === -1) {
+      throw Error('Sequence does not contain element');
+    }
+    return todoContainer.splice(index, 1)[0];
   }
 
-  removeTodoAt(index: number): Todo {
-    return this.todos.splice(index, 1)[0];
+  removeTodoAt(todoContainer: Todo[], index: number): Todo {
+    return todoContainer.splice(index, 1)[0];
   }
 
-  updateTodoAt(index: number, newTodo: string) {
-    const todo = this._todos[index];
+  updateTodoAt(todoContainer: Todo[], index: number, newTodo: string): Todo {
+    const todo = todoContainer[index];
     todo.title = newTodo;
-    this._todos.splice(index, 1, todo);
+    todoContainer.splice(index, 1, todo);
+    return todo;
   }
 
-  completeTodoAt(index: number): Todo {
-    const todo = this._todos[index];
+  completeTodoAt(todoContainer: Todo[], index: number): Todo {
+    const todo = todoContainer[index];
     const completedTodo = { ...todo, type: 'done' as const };
-    this._todos.splice(index, 1);
+    todoContainer.splice(index, 1);
     this._dones.push(completedTodo);
     return completedTodo;
   }

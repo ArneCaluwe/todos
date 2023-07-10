@@ -20,12 +20,15 @@ export class TodoListComponent {
 
   onSubmit(): void {
     if (!this.newTodo) return;
-    this._todoDataService.addTodo({ title: this.newTodo, type: 'todo' });
+    this._todoDataService.addTodo(this._todoDataService.todos, {
+      title: this.newTodo,
+      type: 'todo',
+    });
     this.newTodo = '';
   }
 
   onComplete(index: number): void {
-    this._todoDataService.completeTodoAt(index);
+    this._todoDataService.completeTodoAt(this._todoDataService.todos, index);
   }
 
   onDrop(event: CdkDragDrop<string[]>): void {
@@ -37,7 +40,10 @@ export class TodoListComponent {
   }
 
   onDropRemoveZone(event: CdkDragDrop<string[]>): void {
-    this._todoDataService.removeTodoAt(event.previousIndex);
+    this._todoDataService.removeTodoAt(
+      this._todoDataService.todos,
+      event.previousIndex
+    );
   }
 
   onDoubleClick(index: number): void {
@@ -45,7 +51,11 @@ export class TodoListComponent {
   }
 
   onSubmitEdit(newTodo: string, index: number): void {
-    this._todoDataService.updateTodoAt(index, newTodo);
+    this._todoDataService.updateTodoAt(
+      this._todoDataService.todos,
+      index,
+      newTodo
+    );
     this.editedTodo = undefined;
   }
   onCancelEdit(): void {
