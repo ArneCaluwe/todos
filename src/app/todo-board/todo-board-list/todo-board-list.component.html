@@ -10,7 +10,7 @@
       <app-cell *ngIf="editedTodo !== i; else todoForm">
         <app-todo-list-item
           appDoubleClick
-          (doubleClick)="editTodo(i)"
+          (doubleClick)="onEditTodo(i)"
           [todo]="todo.title"
           [completable]="false"
         />
@@ -20,7 +20,7 @@
           <app-todo-list-form
             [todo]="todo.title"
             (submit)="onSubmitEdit($event, i)"
-            (cancel)="onCancelEdit()"
+            (cancel)="onCancelAction()"
             class="w-full"
           />
         </app-cell>
@@ -31,7 +31,7 @@
     <app-cell>
       <app-todo-list-form
         (submit)="onSubmitCreate($event)"
-        (cancel)="onCancelCreate()"
+        (cancel)="onCancelAction()"
         class="w-full"
       />
     </app-cell>

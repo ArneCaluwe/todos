@@ -33,16 +33,12 @@ export class TodoBoardListComponent {
 
   onDrop = (event: CdkDragDrop<Todo[], Todo[], Todo>) => this.drop.emit(event);
 
-  editTodo(index: number): void {
+  onEditTodo(index: number): void {
     this.editedTodo = index;
   }
 
   onSubmitEdit(newTodo: string, index: number): void {
     this.edit.emit([index, newTodo]);
-    this.editedTodo = undefined;
-  }
-
-  onCancelEdit(): void {
     this.editedTodo = undefined;
   }
 
@@ -53,7 +49,8 @@ export class TodoBoardListComponent {
     this.create.emit({ title: newTodo, type: 'todo' });
     this.creatingNewTodo = false;
   }
-  onCancelCreate(): void {
+  onCancelAction(): void {
     this.creatingNewTodo = false;
+    this.editedTodo = undefined;
   }
 }
