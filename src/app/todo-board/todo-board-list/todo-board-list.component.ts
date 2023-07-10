@@ -1,5 +1,11 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Todo } from '@models/todo.model';
 import { TodoDataService } from '@services/todo-data.service';
 
@@ -15,47 +21,36 @@ export class TodoBoardListComponent {
   @Input()
   todos: Todo[] = [];
 
+  @Output()
+  drop: EventEmitter<CdkDragDrop<Todo[], Todo[], Todo>> = new EventEmitter();
+  @Output()
+  edit: EventEmitter<[number, string]> = new EventEmitter();
+  @Output()
+  create: EventEmitter<Todo> = new EventEmitter();
+
   editedTodo?: number;
   creatingNewTodo: boolean = false;
 
-  constructor(private _todoDataService: TodoDataService) {}
-
-  onDrop(event: CdkDragDrop<Todo[], Todo[], Todo>): void {
-    console.log('ddrop');
-
-    if (event.previousContainer === event.container) {
-      this._todoDataService.moveTodoInList(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    } else {
-      this._todoDataService.moveTodoItemBetweenLists(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
-  }
+  onDrop = (event: CdkDragDrop<Todo[], Todo[], Todo>) => this.drop.emit(event);
 
   editTodo(index: number): void {
     this.editedTodo = index;
   }
 
   onSubmitEdit(newTodo: string, index: number): void {
-    this._todoDataService.updateTodoAt(this.todos, index, newTodo);
+    this.edit.emit([index, newTodo]);
     this.editedTodo = undefined;
   }
+
   onCancelEdit(): void {
     this.editedTodo = undefined;
   }
 
-  createNewTodo(): void {
+  onCreateNewTodo(): void {
     this.creatingNewTodo = true;
   }
   onSubmitCreate(newTodo: string): void {
-    this._todoDataService.addTodo(this.todos, { title: newTodo, type: 'todo' });
+    this.create.emit({ title: newTodo, type: 'todo' });
     this.creatingNewTodo = false;
   }
   onCancelCreate(): void {
