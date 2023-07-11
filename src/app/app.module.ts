@@ -8,6 +8,7 @@ import { TodoListModule } from './todo-list/todo-list.module';
 import { TodoBoardModule } from './todo-board/todo-board.module';
 import { GlobalErrorHandler } from '@core/global-error-handler';
 import { MaterialModule } from './material.module';
+import { PaperComponent } from './graphic/paper/paper.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { MaterialModule } from './material.module';
     TodoBoardModule,
     TodoRouterModule,
     MaterialModule,
+    PaperComponent,
   ],
   providers: [
     {
