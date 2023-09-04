@@ -1,0 +1,23 @@
+// #dropListRemove.cdk-drop-list-dragging {
+//   *:not(.remove-zone__icon) {
+//     @apply hidden;
+//     // show scss debug message here
+//     @debug "hidden";
+//   }
+//   .remove-zone__icon {
+//     @apply text-red-300 dark:text-red-600;
+//   }
+// }
+#dropListRemove {
+  &:is(.cdk-drop-list-dragging, .cdk-drop-list-receiving) {
+    @apply visible;
+  }
+
+  & > .cdk-drag-preview {
+    display: none !important;
+  }
+
+  &.cdk-drop-list-dragging .remove-zone__icon {
+    @apply text-red-300 dark:text-red-600;
+  }
+}

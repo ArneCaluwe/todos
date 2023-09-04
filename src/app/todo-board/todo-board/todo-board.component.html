@@ -8,4 +8,13 @@
       (create)="onCreate(board.content, $event)"
     />
   </app-card>
+  <div
+    id="dropListRemove"
+    cdkDropList
+    cdkDropListConnectedTo="dropListTodos"
+    (cdkDropListDropped)="onDropRemoveZone($event)"
+    class="absolute bottom-5 left-0 grid w-full place-items-center text-slate-300 invisible"
+  >
+    <mat-icon class="remove-zone__icon">delete</mat-icon>
+  </div>
 </div>

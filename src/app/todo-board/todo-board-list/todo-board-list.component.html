@@ -4,9 +4,14 @@
     cdkDropList
     [cdkDropListData]="todos"
     (cdkDropListDropped)="onDrop($event)"
-    class="min-h-[10px]"
+    class="min-h-[10px] peer"
   >
-    <div cdkDrag [cdkDragData]="todo" *ngFor="let todo of todos; index as i">
+    <div
+      cdkDrag
+      [cdkDragData]="todo"
+      *ngFor="let todo of todos; index as i"
+      class="peer"
+    >
       <app-cell *ngIf="editedTodo !== i; else todoForm">
         <app-todo-list-item
           appDoubleClick

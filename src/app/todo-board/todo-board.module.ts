@@ -9,6 +9,7 @@ import { TodoListItemComponent } from '../todo-list-item/todo-list-item.componen
 import { TodoListFormComponent } from '../todo-list-form/todo-list-form.component';
 import { DirectivesModule } from '@directives/directives.module';
 import { CardComponent } from '../shared/ui/card/card.component';
+import { MaterialModule } from 'app/material.module';
 
 const ROUTES: Routes = [{ path: '', component: TodoBoardComponent }];
 @NgModule({
@@ -25,6 +26,7 @@ const ROUTES: Routes = [{ path: '', component: TodoBoardComponent }];
     TodoListItemComponent,
     TodoListFormComponent,
     CardComponent,
+    MaterialModule,
   ],
 })
 export class TodoBoardModule {}

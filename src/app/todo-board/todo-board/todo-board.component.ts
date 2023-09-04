@@ -34,6 +34,13 @@ export class TodoBoardComponent {
     }
   }
 
+  onDropRemoveZone(event: CdkDragDrop<string[]>): void {
+    this._todoDataService.removeTodoAt(
+      this._todoDataService.todos,
+      event.previousIndex
+    );
+  }
+
   onEdit(container: Todo[], [index, todo]: [number, string]): void {
     this._todoDataService.updateTodoAt(container, index, todo);
   }
