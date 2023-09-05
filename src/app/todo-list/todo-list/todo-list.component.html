@@ -24,12 +24,9 @@
     >
       <ng-container *ngFor="let todo of todos; index as i">
         <app-cell *ngIf="editedTodo !== i; else todoForm" cdkDrag>
-          <app-todo-list-item
-            appDoubleClick
-            (doubleClick)="onDoubleClick(i)"
-            [todo]="todo"
-            (complete)="onComplete(i)"
-          />
+          <app-todo-list-item appDoubleClick (doubleClick)="onDoubleClick(i)" />
+          <!-- TODO: bind the todo named `todo`to the todo-list-item.  -->
+          <!-- TODO: todo-list item has an event complete, bind it to onComplete -->
         </app-cell>
         <ng-template #todoForm>
           <app-cell>

@@ -1,4 +1,7 @@
-<p class="flex-grow">{{ todo }}</p>
-<button (click)="onComplete()" *ngIf="completable">
+<p class="flex-grow">
+  <!-- TODO: show the todo here. No need for extra elements. -->
+</p>
+<button *ngIf="completable">
+  <!-- TODO: bind the click option to onComplete-->
   <mat-icon> check </mat-icon>
 </button>

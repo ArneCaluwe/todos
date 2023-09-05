@@ -1,15 +1,10 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JokesService } from '@services/jokes.service';
 import { TodoDataService } from '@services/todo-data.service';
-import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { Subject, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
