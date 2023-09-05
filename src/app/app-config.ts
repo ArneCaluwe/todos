@@ -6,4 +6,6 @@
 */
 export interface AppConfig {
   apiEndpoint: string;
+  key: string;
+  host: string;
 }

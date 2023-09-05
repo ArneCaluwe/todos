@@ -6,4 +6,6 @@ export const APP_CONFIG: InjectionToken<AppConfig> =
 
 export const APP_DI_CONFIG: AppConfig = {
   apiEndpoint: 'https://jokeapi-v2.p.rapidapi.com/',
+  key: 'xxx',
+  host: 'xxx',
 };
