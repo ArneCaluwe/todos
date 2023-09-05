@@ -13,7 +13,8 @@
       <mat-icon class="">send</mat-icon>
     </button>
   </form>
-  <ng-container *ngIf="todos && todos.length; else noTodos">
+  <!-- TODO: show element below only when todos list exist, and has items, otherwise show the template for noTodos -->
+  <ng-container>
     <div
       id="dropListTodos"
       cdkDropListConnectedTo="dropListRemove"
@@ -22,9 +23,10 @@
       (cdkDropListDropped)="onDrop($event)"
       class="peer min-h-[10px]"
     >
-      <ng-container *ngFor="let todo of todos; index as i">
+      <!-- TODO: loop over the todos array, save the index as i.  -->
+      <!-- TODO: add double click directive on app-todo-list-item below, bind it to onDoubleClick(i) -->
+      <!-- <ng-container >
         <app-cell *ngIf="editedTodo !== i; else todoForm" cdkDrag>
-          <!-- TODO: add double click directive on element below, bind it to onDoubleClick(i) -->
           <app-todo-list-item [todo]="todo" (complete)="onComplete(i)" />
         </app-cell>
         <ng-template #todoForm>
@@ -35,8 +37,8 @@
               (cancel)="onCancelEdit()"
             />
           </app-cell>
-        </ng-template>
-      </ng-container>
+        </ng-template> 
+      </ng-container> -->
     </div>
     <div
       id="dropListRemove"
