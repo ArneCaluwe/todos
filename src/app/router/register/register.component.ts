@@ -1,13 +1,5 @@
-import { Component, inject } from '@angular/core';
-import {
-  AbstractControl,
-  Form,
-  FormControl,
-  FormGroup,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
-import { AuthService } from '@services/auth.service';
+import { Component } from '@angular/core';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -15,35 +7,18 @@ import { AuthService } from '@services/auth.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  registerForm: FormGroup<{
-    name: FormControl<string | null>;
-    lastName: FormControl<string | null>;
-    email: FormControl<string | null>;
-    password: FormControl<string | null>;
-    confirmPassword: FormControl<string | null>;
-  }>;
-  private _authService = inject(AuthService);
+  constructor() {}
 
-  constructor() {
-    this.registerForm = new FormGroup(
-      {
-        name: new FormControl('', Validators.required),
-        lastName: new FormControl('', Validators.required),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(
-            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
-          ),
-        ]),
-        confirmPassword: new FormControl('', Validators.required),
-      },
-      {
-        validators: this.passwordsMatchValidator,
-      }
-    );
-  }
+  //TODO: implement register form
+  // it should contain the following fields:
+  // first name, last name, email, password, confirm password
+  // the form should be validated as follows:
+  // first name, last name, email, password are required
+  // email should be a valid email address
+  // password and confirm password should match
+  // the form should be submitted on button click
+
+  // on submit, use the auth service. If succesfull, navigate to /list
 
   passwordsMatchValidator: ValidatorFn = (group: AbstractControl) => {
     const password = group.get('password')?.value;
@@ -57,12 +32,6 @@ export class RegisterComponent {
   };
 
   onSubmit(): void {
-    const user = this.registerForm.value;
-    this._authService.register(
-      user.name!,
-      user.lastName!,
-      user.email!,
-      user.password!
-    );
+    // TODO: implement onSubmit
   }
 }
