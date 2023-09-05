@@ -1,15 +1,6 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  inject,
-} from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { JokesService } from '@services/jokes.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TodoDataService } from '@services/todo-data.service';
-import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -18,24 +9,13 @@ import { Subject, switchMap, takeUntil, tap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoListComponent {
-  private _jokeService = inject(JokesService);
-  private _snackbar = inject(MatSnackBar);
+  // TODO: Inject the JokeService
+  // TODO: create a trigger which will call the getJoke method on the JokeService
+  // todo: when the joke is returned, show the joke in a snackbar, or anywhere you see fit
   newTodo?: string;
   editedTodo?: number;
 
-  private _jokeTrigger$ = new Subject<void>();
-
-  constructor(private _todoDataService: TodoDataService) {
-    this._jokeTrigger$
-      .pipe(
-        takeUntilDestroyed(),
-        switchMap(() => this._jokeService.getJokes$()),
-        tap((joke) =>
-          this._snackbar.open(joke.joke, 'Close', { duration: 3000 })
-        )
-      )
-      .subscribe();
-  }
+  constructor(private _todoDataService: TodoDataService) {}
 
   get todos(): string[] {
     return this._todoDataService.simpleTodos;
@@ -48,7 +28,6 @@ export class TodoListComponent {
       type: 'todo',
     });
     this.newTodo = '';
-    this._jokeTrigger$.next();
   }
 
   onComplete(index: number): void {

@@ -10,18 +10,21 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Exercise
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. **create a new jokes service**. 
+use appConfig {apiEndpoint}/jokes as url
 
-## Running unit tests
+params should be
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```ts 
+params: {
+  type: 'single',
+}
+```
 
-## Running end-to-end tests
+2. create a profile on [rapidApi](https://rapidapi.com)
+3. add your token and host to [app.config](./src/app/app.config.ts)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+4. Add an interceptor, to provide these tokens automatically.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
