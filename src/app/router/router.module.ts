@@ -1,55 +1,25 @@
-import { NgModule, inject } from '@angular/core';
-import { Router, RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { MaterialModule } from 'app/material.module';
 import { CardComponent } from '../shared/ui/card/card.component';
 import { LoginComponent } from './login/login.component';
-import { MaterialModule } from 'app/material.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
-import { CommonModule } from '@angular/common';
-import { AuthService } from '@services/auth.service';
 
-const LoggedInGuard = () => {
-  const authService = inject(AuthService);
-  const router = inject(Router);
-  return authService.isLoggedIn ? true : router.navigate(['/login']);
-};
+// TODO: add routes:
+// default route: redirect to /not-found
+// /not-found: NotFoundComponent
+// /login: LoginComponent
+// /register: RegisterComponent
+// list: TodoListModule (lazy loaded)
+// board: TodoBoardModule (lazy loaded)
+// redirect '' to /list
+// create a guard logged in (can call authentification service)
+// guard /list and /board
 
-const ROUTES: Routes = [
-  {
-    path: '',
-    redirectTo: 'list',
-    pathMatch: 'full',
-  },
-  {
-    path: 'list',
-    loadChildren: () =>
-      import('../todo-list/todo-list.module').then((m) => m.TodoListModule),
-    canActivate: [LoggedInGuard],
-  },
-  {
-    path: 'board',
-    loadChildren: () =>
-      import('../todo-board/todo-board.module').then((m) => m.TodoBoardModule),
-    canActivate: [LoggedInGuard],
-  },
-  {
-    path: 'not-found',
-    component: NotFoundComponent,
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-  },
-  {
-    path: '**',
-    redirectTo: 'not-found',
-  },
-];
+const ROUTES: Routes = [];
 
 @NgModule({
   declarations: [NotFoundComponent, LoginComponent, RegisterComponent],
