@@ -1,2 +1,2 @@
-export * from './double-click.directive';
+// TODO: export directive
 export * from './directives.module';

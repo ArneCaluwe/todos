@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DoubleClickDirective } from './double-click.directive';
+import { NgModule } from '@angular/core';
 
+// TODO: Add the DoubleClickDirective
 @NgModule({
-  declarations: [DoubleClickDirective],
+  declarations: [],
   imports: [CommonModule],
-  exports: [DoubleClickDirective],
+  exports: [],
 })
 export class DirectivesModule {}

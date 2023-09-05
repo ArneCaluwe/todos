@@ -13,12 +13,8 @@
       class="peer"
     >
       <app-cell *ngIf="editedTodo !== i; else todoForm">
-        <app-todo-list-item
-          appDoubleClick
-          (doubleClick)="onEditTodo(i)"
-          [todo]="todo.title"
-          [completable]="false"
-        />
+        <!-- TODO: add double click directive on element below, bind it to onEditTodo(i) -->
+        <app-todo-list-item [todo]="todo.title" [completable]="false" />
       </app-cell>
       <ng-template #todoForm>
         <app-cell>
