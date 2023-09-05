@@ -1,7 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '@services/auth.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -9,25 +6,9 @@ import { AuthService } from '@services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  private _authService = inject(AuthService);
-  private _router = inject(Router);
-
-  user = {
-    email: '',
-    password: '',
-  };
-
-  submitted = false;
-  loginError: string | undefined = undefined;
-
-  onSubmit(): void {
-    this.submitted = true;
-    const response = this._authService.logIn(
-      this.user.email,
-      this.user.password
-    );
-    response.valid
-      ? this._router.navigate(['/list'])
-      : (this.loginError = response.message);
-  }
+  // TODO: add logic. This component should be used for login.
+  // advice: keep a variable for user. this can be bound to with ngModel
+  // advice: use a AuthService to handle login
+  // advice: use a Router to navigate to the list component
+  // advice: keep a variable for submitted, to show a message when the form is submitted but unsuccessful
 }
