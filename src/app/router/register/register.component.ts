@@ -46,7 +46,6 @@ export class RegisterComponent {
   }
 
   passwordsMatchValidator: ValidatorFn = (group: AbstractControl) => {
-    console.log(group);
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
 
@@ -58,15 +57,12 @@ export class RegisterComponent {
   };
 
   onSubmit(): void {
-    console.log(this.registerForm.value);
     const user = this.registerForm.value;
-    console.log(
-      this._authService.register(
-        user.name!,
-        user.lastName!,
-        user.email!,
-        user.password!
-      )
+    this._authService.register(
+      user.name!,
+      user.lastName!,
+      user.email!,
+      user.password!
     );
   }
 }
