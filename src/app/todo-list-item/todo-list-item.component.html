@@ -1,4 +1,4 @@
-<p class="flex-grow">{{ todo }}</p>
+<p class="flex-grow">{{ todo | capitalise }}</p>
 <button (click)="onComplete()" *ngIf="completable">
   <mat-icon> check </mat-icon>
 </button>

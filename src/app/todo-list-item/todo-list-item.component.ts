@@ -7,14 +7,15 @@ import {
   Output,
 } from '@angular/core';
 import { MaterialModule } from 'app/material.module';
+import { CapitalisePipe } from '../pipes/capitalise.pipe';
 
 @Component({
   selector: 'app-todo-list-item',
   templateUrl: './todo-list-item.component.html',
   styleUrls: ['./todo-list-item.component.scss'],
   standalone: true,
-  imports: [CommonModule, MaterialModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, MaterialModule, CapitalisePipe],
 })
 export class TodoListItemComponent {
   @Input() todo!: string;
