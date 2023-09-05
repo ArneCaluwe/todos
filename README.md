@@ -6,22 +6,40 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Exercises: 
+### Add a new paper component. This component should be standalone and can have an animation. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Generate this component using angular cli
+2. Declare or import the component in `app.module`
+3. Add the component to `app.component`. Align correctly (proposed class: `-z-50 absolute bottom-6 right-6 scale-150`)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+_example code below._
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+```html
+<div
+  class="paper w-[400px] h-[400px] rotate-45 bg-gradient-to-tr from-green-100 dark:from-blue-800 to-green-300 dark:to-slate-900 rounded-lg shadow-lg blur-sm;"
+></div>
+<div
+  class="pen w-[450px] h-[20px] bg-white dark:bg-blue-950 absolute top-1/2 left-1/2 shadow-lg shadow-green-100 dark:shadow-slate-900 rounded-[50%]"
+></div>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
 
-## Further help
+```scss
+.pen {
+  animation: pen 1s infinite alternate;
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  @keyframes pen {
+    0% {
+      transform: translate(-20%, -10%) rotate3d(1, 1, 1, 25deg);
+    }
+    100% {
+      transform: translate(-30%, -50%) rotate3d(1, 1, 1, 35deg);
+    }
+  }
+}
+```
+
