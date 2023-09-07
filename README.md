@@ -13,3 +13,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 2. Update the pipe so it capitalises the very first letter.
 3. Import the pipe in Todo-list-item component and board-item component.
 3. Use the pipe in the template of these components
+
+## Auth: 
+* email: admin@m.com 
+* password: P@ssword123
+
+_[look in auth.service]_
